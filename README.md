@@ -1,2 +1,5 @@
-# Rick_and_Morty_IOS_App
-A Swift app Rick and Morty. Using Rick &amp; Morty API.
+# Swift Rick and Morty App
+Rick and Morty iOS Swift Storyboard app using Rick and Morty API.
+
+- Written in Swift
+- Unit tested
