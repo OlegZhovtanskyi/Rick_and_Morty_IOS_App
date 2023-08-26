@@ -22,12 +22,7 @@ final class RMCharacterListView: UIView {
     
     private let viewModel = RMCharacterListViewViewModel()
     
-    private let spinner: UIActivityIndicatorView = {
-        let spinner = UIActivityIndicatorView(style: .large)
-        spinner.hidesWhenStopped = true
-        spinner.translatesAutoresizingMaskIntoConstraints = false
-        return spinner
-    }()
+
     
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -50,11 +45,11 @@ final class RMCharacterListView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
-        addSubviews(collectionView, spinner)
+        addSubviews(collectionView)
         
         addConstraints()
         
-        spinner.startAnimating()
+        
         viewModel.delegate = self
         viewModel.fetchCharacter()
         setUpCollectionView()
@@ -66,10 +61,7 @@ final class RMCharacterListView: UIView {
     
     private func addConstraints() {
         NSLayoutConstraint.activate([
-            spinner.widthAnchor.constraint(equalToConstant: 100),
-            spinner.heightAnchor.constraint(equalToConstant: 100),
-            spinner.centerXAnchor.constraint(equalTo: centerXAnchor),
-            spinner.centerYAnchor.constraint(equalTo: centerYAnchor),
+
             
             collectionView.topAnchor.constraint(equalTo: topAnchor),
             collectionView.leftAnchor.constraint(equalTo: leftAnchor),
@@ -91,7 +83,6 @@ extension RMCharacterListView: RMCharacterListViewViewModelDelegate {
     }
     
     func didLoadInitialCharacter() {
-        spinner.stopAnimating()
         collectionView.isHidden = false
         collectionView.reloadData() //Initial fetch
         UIView.animate(withDuration: 0.4) {
