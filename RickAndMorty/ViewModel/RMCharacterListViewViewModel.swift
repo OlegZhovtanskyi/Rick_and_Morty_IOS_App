@@ -7,6 +7,8 @@
 
 import UIKit
 
+//MARK: - RM_CharacterListViewModel
+
 protocol RMCharacterListViewViewModelDelegate: AnyObject {
     func didLoadInitialCharacter()
     func didLoadMoreCharacters(with newIndexPath: [IndexPath])
@@ -77,6 +79,9 @@ final class RMCharacterListViewViewModel: NSObject {
                 let info = responceModel.info
                 strongSelf.characters.append(contentsOf: moreResults)
                 strongSelf.apiInfo = info
+                
+                print(moreResults.count)
+                print(moreResults.first?.name)
                 
                 let originalCount = strongSelf.characters.count
                 let newCount = moreResults.count
